@@ -1,8 +1,8 @@
 'use strict'
 const path = require('path')
 const utils = require('./utils')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const config = require('../config')
-const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -26,7 +26,7 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
-    filename: '[name].js',
+    filename: utils.assetsPath('[name].js'),
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
@@ -44,8 +44,23 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
+        options: {
+          transformAssetUrls: {
+            video: ['src', 'poster'],
+            source: 'src',
+            img: 'src',
+            image: 'xlink:href'
+          }
+        }
       },
+      // {
+      //   test: /\.css$/,
+      //   use: [
+      //     'css-hot-loader',
+      //     MiniCssExtractPlugin.loader,
+      //     'css-loader'
+      //   ]
+      // },
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -77,6 +92,9 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new VueLoaderPlugin()
+  ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
     // source contains it (although only uses it if it's native).
