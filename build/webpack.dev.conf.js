@@ -18,7 +18,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
   module: {
     rules: utils.styleLoaders({ 
-      hmr: true, 
+      hotReload: true, 
       extract: true, 
       sourceMap: config.dev.cssSourceMap, 
       usePostCSS: true 

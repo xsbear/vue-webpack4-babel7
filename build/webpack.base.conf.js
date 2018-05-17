@@ -1,8 +1,8 @@
 'use strict'
 const path = require('path')
 const utils = require('./utils')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const config = require('../config')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -53,14 +53,6 @@ module.exports = {
           }
         }
       },
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     'css-hot-loader',
-      //     MiniCssExtractPlugin.loader,
-      //     'css-loader'
-      //   ]
-      // },
       {
         test: /\.js$/,
         loader: 'babel-loader',
