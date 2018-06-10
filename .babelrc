@@ -4,14 +4,15 @@
       "modules": false,
       "targets": {
         "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
-      }
+      },
+      "useBuiltIns": "usage"
     }]
   ],
-  "plugins": ["transform-vue-jsx", "@babel/transform-runtime"],
+  "plugins": ["transform-vue-jsx"],
   "env": {
     "test": {
       "presets": ["@babel/preset-env"],
-      "plugins": ["transform-vue-jsx", "@babel/transform-runtime"]
+      "plugins": ["transform-vue-jsx"]
     }
   }
 }
