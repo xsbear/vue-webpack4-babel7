@@ -11,21 +11,15 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const assetsPath = function (_path) {
-  const assetsSubDirectory = devMode ? '' : 'static'
-  return path.posix.join(assetsSubDirectory, _path)
-}
-
-
 module.exports = {
-  context: path.resolve(__dirname, '../'),
+  context: resolve(''),
   entry: {
     app: './src/main.js'
   },
   output: {
-    path: path.resolve(__dirname, '../dist'),
-    filename: assetsPath(devMode ? '[name].js' :'js/[name].[chunkhash].js'),
-    chunkFilename: assetsPath(devMode ? '[id].js' : 'js/[id].[chunkhash].js'),
+    path: resolve('dist'),
+    filename: devMode ? 'js/[name].js' : 'js/[name].[chunkhash].js',
+    chunkFilename: devMode ? 'js/[name].js' : 'js/[name].[chunkhash].js',
     publicPath: '/',
   },
   resolve: {
@@ -38,6 +32,25 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
     },
+  },
+
+  optimization: {
+    splitChunks: {
+      chunks: 'async',
+      name: true,
+      cacheGroups: {
+        common: {
+          name: 'common',
+          chunks: 'initial',
+          minChunks: 2
+        },
+        vendor: {
+          name: 'vendor',
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all'
+        }
+      }
+    }
   },
 
   module: {
@@ -64,7 +77,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: require.resolve('babel-loader'),
-        include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+        include: [resolve('src'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -85,7 +98,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: assetsPath('img/[name].[hash:7].[ext]')
+          name: 'img/[name].[hash:7].[ext]'
         }
       },
       {
@@ -93,7 +106,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name:  assetsPath('media/[name].[hash:7].[ext]')
+          name:  'media/[name].[hash:7].[ext]'
         }
       },
       {
@@ -101,7 +114,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name:  assetsPath('fonts/[name].[hash:7].[ext]')
+          name:  'fonts/[name].[hash:7].[ext]'
         }
       }
     ]
@@ -111,8 +124,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: assetsPath(devMode ? '[name].css' : 'css/[name].[contenthash].css'),
-      chunkFilename: assetsPath(devMode ? '[id].css' : 'css/[id].[contenthash].css'),
+      filename: devMode ? 'css/[name].css' : 'css/[name].[contenthash].css',
+      chunkFilename: devMode ? 'css/[id].css' : 'css/[id].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
