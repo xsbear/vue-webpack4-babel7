@@ -44,9 +44,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env':  { NODE_ENV: '"development"' }
-    }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
