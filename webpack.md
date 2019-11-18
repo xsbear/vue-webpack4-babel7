@@ -166,7 +166,8 @@ webpack.dev.js 是开发环境的webpack config 文件，使用`webpack-merge`�
   }
 ```
 效果是这样的：
-图
+
+![output](./output.png)
 
 ### webpack.prod.js
 webpack.prodjs 是生产环境的webpack config 文件，也使用`webpack-merge`继承了 webpack.base.js 的主要配置。在这里设置`mode`值为 `production`，同样使用`DefinePlugin`设置`process.env.NODE_ENV`值为`production`，使用`TerserPlugin`等插件对生产构建输出包进行压缩优化。另外引入`optimize-css-assets-webpack-plugin`插件，对输出的css  bundle也做优化处理。
