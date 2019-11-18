@@ -145,7 +145,7 @@ MiniCssExtractPlugin({
   chunkFilename: devMode ? 'css/[id].css' : 'css/[id].[contenthash].css',
 }),
 ```
-* 由于本示例应用是纯前端应用（引用资源的入口是html文件），所以还要使用`HtmlWebpackPlugin`插件来处理入口html文件的资源引用注入修改，我们无需关心不同环境构建输出的资源包路径命名差异，插件会自动注入资源引用代码。但如果不是纯前端应用，比如使用了 Node应用框架或其他后端语言框架的模板，则需要考虑如何引入输出后的资源路径了，在本文最后会有所提及，但具体的实践可能需要另开话题分享了。
+* 由于本示例应用是纯前端应用（引用资源的入口是html文件），所以还要使用`HtmlWebpackPlugin`插件来处理入口html文件的资源引用注入修改，我们无需关心不同环境构建输出的资源包路径命名差异，插件会自动注入资源引用代码。但如果不是纯前端应用，比如使用了 Node应用框架或其他后端语言框架的模板，则需要考虑如何引入输出后的资源路径了，但具体的实践可能需要另开话题分享了。
 
 ### webpack.dev.js
 webpack.dev.js 是开发环境的webpack config 文件，使用`webpack-merge`继承 webpack.base.js ，内容主要是开发阶段所需的一些特定配置。
