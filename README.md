@@ -2,6 +2,10 @@
 
 > A Vue.js project use webpack4 and babel7
 
+文档：[扔掉cli，webpack工程轻量化配置实战](https://github.com/xsbear/vue-webpack4-babel7/blob/master/webpack.md)
+
+vue-cli 版本: https://github.com/xsbear/vue-webpack4-babel7/tree/vue-cli-version
+
 ## Build Setup
 
 ``` bash
@@ -14,17 +18,5 @@ npm run dev
 # build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
